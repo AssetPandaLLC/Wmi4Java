@@ -41,7 +41,8 @@ class WMIPowerShell implements WMIStub {
         try {
             powerShell = PowerShell.openSession();
             Map<String, String> config = new HashMap<String, String>();
-            config.put("maxWait", "20000");
+            config.put("waitPause", "7000");
+            config.put("maxWait", "60000");
             PowerShellResponse psResponse = powerShell.configuration(config).executeCommand(command);
 
             if (psResponse.isError()) {
@@ -50,7 +51,13 @@ class WMIPowerShell implements WMIStub {
             }
 
             commandResponse = psResponse.getCommandOutput().trim();
-
+        	//if(command.contains("10.10.0.110")) {
+        		System.out.println("**************************************************");
+        		System.out.println(command);
+        		System.out.println(commandResponse);
+        		System.out.println(psResponse);
+        		System.out.println("**************************************************");
+        	//}
             powerShell.close();
         } catch (PowerShellNotAvailableException ex) {
             throw new WMIException(ex.getMessage(), ex);
@@ -123,6 +130,7 @@ class WMIPowerShell implements WMIStub {
     }
     
     private String initCommand (String wmiClass, String namespace, String computerName) {
+
     	String command = GETWMIOBJECT_COMMAND + wmiClass + " ";
 
         if (!"*".equals(namespace)) {
@@ -131,7 +139,9 @@ class WMIPowerShell implements WMIStub {
         if (!computerName.isEmpty()) {
             command += COMPUTERNAME_PARAM + computerName + " ";
         }
-        
+    	//if(computerName.endsWith(".110")) {
+    		System.out.println(command);
+    	//}
         return command;
     }
 }

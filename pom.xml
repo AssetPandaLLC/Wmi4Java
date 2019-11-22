@@ -118,7 +118,7 @@
         <dependency>
             <groupId>com.profesorfalken</groupId>
             <artifactId>jPowerShell</artifactId>
-            <version>3.0</version>
+            <version>3.0.4</version>
         </dependency>
     </dependencies>
     <properties>
