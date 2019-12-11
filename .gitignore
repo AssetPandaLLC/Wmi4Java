@@ -2,3 +2,5 @@
 /TestBugPowerShell/nbproject/private/
 /.project
 /.classpath
+/.gradle/
+/bin/
