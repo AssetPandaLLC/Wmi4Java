@@ -95,12 +95,12 @@ class WMIPowerShell implements WMIStub {
     public String listObject(String wmiClass, String namespace, String computerName) throws WMIException {
     	String command = initCommand(wmiClass, namespace, computerName);
 
-        command += " | ";
+       // command += " | ";
 
-        command += "Select-Object * -excludeproperty \"_*\" | ";
+       // command += "Select-Object * -excludeproperty \"_*\" | ";
 
-        command += "Format-List *";
-
+       // command += "Format-List *";
+        System.out.println(command);
         return executeCommand(command);
     }
 
